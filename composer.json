@@ -1,0 +1,30 @@
+{
+  "name": "jona-odoh/promptsql",
+  "description": "PromptSQL - A PHP library that provides an AI assistant for querying databases using natural language, with secure SQL generation and execution.",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "guzzlehttp/guzzle": "^7.9",
+    "psr/log": "^3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "PromptSQL\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PromptSQL\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit --colors=always",
+    "lint": "php -l $(git ls-files '*.php')"
+  }
+}

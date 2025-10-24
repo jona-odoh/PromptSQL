@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="vendor/autoload.php"
+    colors="true"
+    cacheResult="false"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    beStrictAboutChangesToGlobalState="true"
+    beStrictAboutCoversAnnotation="false"
+    failOnRisky="true"
+    failOnWarning="true"
+    verbose="true"
+>
+  <testsuites>
+    <testsuite name="PromptSQL Test Suite">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
