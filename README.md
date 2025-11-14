@@ -1,6 +1,6 @@
 # PromptSQL
 
-PromptSQL is a secure PHP 8.2+ library that converts natural language questions into read-only SQL queries using OpenAI, and executes them safely against MySQL or PostgreSQL databases via PDO.
+PromptSQL is a secure PHP 8.2+ library that converts natural language questions into read-only SQL queries using Google Gemini API, and executes them safely against MySQL or PostgreSQL databases via PDO.
 
 - Only SELECT queries allowed
 - Prepared statements with named parameters
@@ -21,7 +21,7 @@ composer require jona-odoh/promptsql
 - PHP 8.2+
 - ext-pdo, ext-json
 - MySQL or PostgreSQL
-- OpenAI API key
+- Google Gemini API key
 
 ## Quick Start
 
@@ -31,7 +31,7 @@ composer require jona-odoh/promptsql
 use PromptSQL\Config\PromptSQLConfig;
 use PromptSQL\Database\PdoDatabaseAdapter;
 use PromptSQL\Enums\DatabaseDriver;
-use PromptSQL\OpenAI\GuzzleOpenAIClient;
+use PromptSQL\OpenAI\GuzzleGeminiClient;
 use PromptSQL\OpenAI\OpenAIBasedSqlGenerator;
 use PromptSQL\PromptSQL;
 use PromptSQL\Validation\SqlValidator;
@@ -44,8 +44,8 @@ $config = new PromptSQLConfig(
     dsn: 'pgsql:host=127.0.0.1;port=5432;dbname=app_db',
     username: 'readonly_user',
     password: 'readonly_password',
-    openAiApiKey: getenv('OPENAI_API_KEY') ?: '',
-    openAiModel: 'gpt-4o-mini',
+    geminiApiKey: getenv('GEMINI_API_KEY') ?: '',
+    geminiModel: 'gemini-1.5-flash',
     pdoOptions: [],
     allowList: [
         // Table => allowed columns (empty array means all columns allowed)
@@ -69,8 +69,8 @@ $config = new PromptSQLConfig(
 );
 
 // 2) Wire dependencies (constructor DI)
-$openAI = new GuzzleOpenAIClient($config->openAiApiKey);
-$generator = new OpenAIBasedSqlGenerator($openAI, $config->openAiModel);
+$gemini = new GuzzleGeminiClient($config->geminiApiKey);
+$generator = new OpenAIBasedSqlGenerator($gemini, $config->geminiModel);
 $validator = new SqlValidator();
 $db = new PdoDatabaseAdapter(
     driver: $config->driver,
