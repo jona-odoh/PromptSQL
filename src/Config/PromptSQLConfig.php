@@ -10,8 +10,8 @@ final class PromptSQLConfig
 {
     /**
      * @param DatabaseDriver $driver
-     * @param string $openAiApiKey
-     * @param string $openAiModel
+     * @param string $geminiApiKey
+     * @param string $geminiModel
      * @param array<string, mixed> $pdoOptions
      * @param array<string, array<int, string>> $allowList table => columns (empty list means all columns allowed)
      * @param bool $allowSelectStar Whether SELECT * is allowed
@@ -23,8 +23,8 @@ final class PromptSQLConfig
         public readonly string $dsn,
         public readonly string $username,
         public readonly string $password,
-        public readonly string $openAiApiKey,
-        public readonly string $openAiModel = 'gpt-4o-mini',
+        public readonly string $geminiApiKey,
+        public readonly string $geminiModel = 'gemini-1.5-flash',
         public readonly array $pdoOptions = [],
         public readonly array $allowList = [],
         public readonly bool $allowSelectStar = false,
